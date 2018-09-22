@@ -1,6 +1,8 @@
 import React from 'react'
 import axios from 'axios'
 
+import Arrival from './arrival'
+
 export default class Arrivals extends React.Component {
     constructor(props) {
         super(props)
@@ -28,7 +30,7 @@ export default class Arrivals extends React.Component {
             <div>
                 <h1>ARRIVALS!</h1>
                 <div>{ stopId }</div>
-                { this.state.nextArrivals.map(arrival => <div key={ arrival.tripID }>{ arrival.shortSign }</div>) }
+                { this.state.nextArrivals.map(arrival => <Arrival key={ arrival.tripID } arrival={ arrival } />) }
             </div>
         )
     }
