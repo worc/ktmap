@@ -1,7 +1,7 @@
 {
   "name": "ktmap",
   "version": "0.0.0--ignored",
-  "description": "a next arrivals app for the trimet transit system",
+  "description": "a location-based next arrivals app for the trimet transit system",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --config webpack.dev.config.js --hot --inline",
