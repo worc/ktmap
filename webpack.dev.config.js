@@ -8,6 +8,7 @@ module.exports = {
     devServer: {
         contentBase: STATIC,
         historyApiFallback: true,
+        https: true
     },
     entry: [
         './index.js'

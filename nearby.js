@@ -2,13 +2,28 @@ import React from 'react'
 import axios from 'axios'
 
 export default class Nearby extends React.Component {
-    componentDidMount() {
-        const latitude = '45.512109'
-        const longitude = '-122.637136'
-        const longLatQuery = `ll=${ longitude },${ latitude }`
+    constructor(props) {
+        super(props)
+        this.state = {
+            latitude: 0,
+            longitude: 0
+        }
+    }
 
-        const appId = '5C3A497B4A51A9E15E3D97D4A'
+    componentDidMount() {
+        navigator.geolocation.getCurrentPosition(position => {
+            console.log(position)
+            this.setState({ 
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude
+            })
+        })
+    }
+
+    componentDidUpdate() {
+        const longLatQuery = `ll=${ this.state.longitude },${ this.state.latitude }`
         const distance = 5280 / 4 // quarter mile
+        const appId = '5C3A497B4A51A9E15E3D97D4A'
 
         axios({
             method: 'GET',
