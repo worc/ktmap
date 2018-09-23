@@ -14,7 +14,7 @@ export default ({ arrival }) => {
             <div>{ estimated.fromNow(omitPrefix) } from now at { estimated.format('LT') }</div>
             <div>scheduled arrival:</div>
             <div>{ scheduled.fromNow(omitPrefix) } from now at { scheduled.format('LT') }</div>        
-            { fields.map(field => <div key={ field } >{ field }: { arrival[field].toString() }</div>) }
+            { fields.map(field => <div key={ field } >{ field }: { arrival[field] ? arrival[field].toString() : null }</div>) }
         </ArrivalGroup>
     )
 }
