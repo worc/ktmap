@@ -30,5 +30,5 @@ module.exports = {
         publicPath: '/',
         filename: 'bundle.js'
     },
-    devtool: 'source-map'
+    devtool: 'inline-source-map'
 }
