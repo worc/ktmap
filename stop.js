@@ -1,20 +1,30 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import { flatEarthDistance } from './distance'
+import { flatEarthNamedBearing } from './bearing'
 
-export default ({ stop }) => {
-    const fields = Object.keys(stop)
+export default ({ stop, userLocation }) => {
     const stopUrl = `/arrivals/${ stop.locid }`
+    const stopLocation = { latitude: stop.lat, longitude: stop.lng }
+    const distance = Math.trunc(flatEarthDistance(userLocation, stopLocation))
+    const bearing = flatEarthNamedBearing(userLocation, { latitude: stop.lat, longitude: stop.lng })
 
     return (
-        <Link to={ stopUrl }>
+        <StyledLink to={ stopUrl }>
             <StopInformation>
-                { fields.map(field => <div key={ field }>{ field }: { stop[field] }</div> )}
+                <h2>#{ stop.locid}, { stop.desc }, { stop.dir }</h2>
+                <div>distance: { distance }m</div>
+                <div>bearing: { bearing }</div>
             </StopInformation>
-        </Link>
+        </StyledLink>
     )
 }
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+`
+
 const StopInformation = styled.div`
-    margin-top: 10px;
+    margin-top: 20px;
 `

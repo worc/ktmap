@@ -1,4 +1,5 @@
-const EARTH_MEAN_RADIUS = 6371000; // in meters
+import EARTH_MEAN_RADIUS from './earth_mean_radius'
+import { pairToRadians } from './trig'
 
 // haversine formula, treats the earth as a spheroid and gets accurate distance across the globe
 // with a maximum of 0.5% error margin
@@ -27,7 +28,7 @@ const EARTH_MEAN_RADIUS = 6371000; // in meters
 export const flatEarthDistance = (origin = { latitude, longitude }, target = { latitude, longitude }) => {
     const originRadians = pairToRadians(origin)
     const targetRadians = pairToRadians(target)
-    const meridianCorrection = Math.cos(target.latitude) // either latitude here works apparently
+    const meridianCorrection = Math.cos(targetRadians.latitude) // either latitude here works apparently
     
     const longitudeDifference = targetRadians.longitude - originRadians.longitude
     const eastWestDifference = EARTH_MEAN_RADIUS * longitudeDifference * meridianCorrection
@@ -37,6 +38,3 @@ export const flatEarthDistance = (origin = { latitude, longitude }, target = { l
 
     return Math.sqrt(eastWestDifference * eastWestDifference + northSouthDifference * northSouthDifference)
 }
-
-const toRadians = degree => degree * Math.PI / 180
-const pairToRadians = ({ latitude, longitude }) => ({ latitude: toRadians(latitude), longitude: toRadians(longitude) })

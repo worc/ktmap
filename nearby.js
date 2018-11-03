@@ -9,8 +9,10 @@ export default class Nearby extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            latitude: 0,
-            longitude: 0,
+            userLocation: {
+                latitude: 0,
+                longitude: 0,
+            },
             stops: []
         }
     }
@@ -19,9 +21,12 @@ export default class Nearby extends React.Component {
         navigator.geolocation.getCurrentPosition(position => {
             console.log(position)
             this.fetchStops(position.coords)
-            this.setState({ 
+            const userLocation = {
                 latitude: position.coords.latitude,
                 longitude: position.coords.longitude
+            }
+            this.setState({ 
+                userLocation
             })
         })
     }
@@ -46,10 +51,9 @@ export default class Nearby extends React.Component {
 
     render() {
         return (
-            <div>
-                <h1>NEARBY!</h1>
-                { this.state.stops.map(stop => <Stop key={ stop.locid } stop={ stop } /> )}
-            </div>
+            <React.Fragment>
+                { this.state.stops.map(stop => <Stop key={ stop.locid } stop={ stop } userLocation={ this.state.userLocation } /> )}
+            </React.Fragment>
         )
     }
 }
