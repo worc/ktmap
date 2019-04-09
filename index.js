@@ -2,8 +2,8 @@ import React from 'react'
 import { render } from 'react-dom'
 import { HashRouter, Switch, Route, Redirect } from 'react-router-dom'
 
-import Nearby from './nearby'
-import Arrivals from './arrivals'
+import Nearby from './pages/nearby'
+import Arrivals from './pages/arrivals'
 import NotFound from './not_found'
 
 render(

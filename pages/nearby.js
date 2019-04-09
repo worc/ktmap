@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 
-import Stop from './stop'
+import Stop from '../stop'
 
 // todo poll location, update if it's a significant enough difference from previous position
 // todo also eventually and time out anyways after 15 seconds or so

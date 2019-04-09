@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 
-import Arrival from './arrival'
+import Arrival from '../arrival'
 
 export default class Arrivals extends React.Component {
     constructor(props) {
