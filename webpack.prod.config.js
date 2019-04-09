@@ -20,9 +20,20 @@ module.exports = {
             }
         ]
     },
+    optimization: {
+        splitChunks: {
+            chunks: 'all',
+            cacheGroups: {
+                vendor: {
+                    test: /node_modules/,
+                },
+            },
+        },
+    },
     output: {
         path: DIST,
         publicPath: '/',
-        filename: 'bundle.js'
+        filename: 'bundle.js',
+        chunkFilename: 'vendor.js',
     },
 }
