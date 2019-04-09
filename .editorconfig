@@ -1,0 +1,9 @@
+# No .editorconfig files above the root directory
+root = true
+
+[*]
+#unix line endings
+end_of_line = lf
+indent_style = space
+indent_size = 4
+charset = utf-8
