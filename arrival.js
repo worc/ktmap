@@ -22,5 +22,5 @@ const ArrivalGroup = styled.div`
 
 const Scheduled = styled.div`
     font-style: italic;
-    margin-top: -52px;
+    margin-top: -42px;
 `
