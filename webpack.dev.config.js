@@ -1,12 +1,14 @@
 const path = require('path')
 
-const DIST = path.join(__dirname, 'dist')
-const STATIC = path.join(__dirname, 'static')
+const DOCS = path.join(__dirname, 'docs')
+
+const MODE = process.env.MODE
 
 module.exports = {
     mode: 'development',
     devServer: {
-        contentBase: STATIC,
+        contentBase: DOCS,
+        publicPath: '/ktmap/',
         historyApiFallback: true,
         https: true
     },
@@ -25,10 +27,21 @@ module.exports = {
             }
         ]
     },
+    optimization: {
+        splitChunks: {
+            chunks: 'all',
+            cacheGroups: {
+                vendor: {
+                    test: /node_modules/,
+                },
+            },
+        },
+    },
     output: {
-        path: DIST,
-        publicPath: '/',
-        filename: 'bundle.js'
+        path: DOCS,
+        publicPath: '/ktmap/',
+        filename: 'bundle.js',
+        chunkFilename: 'vendor.js',
     },
     devtool: 'inline-source-map'
 }

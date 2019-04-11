@@ -1,7 +1,6 @@
 const path = require('path')
 
-const DIST = path.join(__dirname, 'docs')
-const STATIC = path.join(__dirname, 'static')
+const DOCS = path.join(__dirname, 'docs')
 
 module.exports = {
     mode: 'production',
@@ -31,8 +30,8 @@ module.exports = {
         },
     },
     output: {
-        path: DIST,
-        publicPath: '/',
+        path: DOCS,
+        publicPath: 'https://worc.gitub.io/ktmap/',
         filename: 'bundle.js',
         chunkFilename: 'vendor.js',
     },
