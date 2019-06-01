@@ -20,7 +20,11 @@ export default class Nearby extends React.Component {
     componentDidMount() {
         navigator.geolocation.getCurrentPosition(position => {
             console.log(position)
-            this.fetchStops(position.coords)
+            this.fetchStops({
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude,
+                distance: 5280 / 2 // half mile
+            })
             const userLocation = {
                 latitude: position.coords.latitude,
                 longitude: position.coords.longitude
@@ -31,9 +35,8 @@ export default class Nearby extends React.Component {
         })
     }
 
-    fetchStops({ latitude, longitude }) {
+    fetchStops({ latitude, longitude, distance }) {
         const longLatQuery = `ll=${ longitude },${ latitude }`
-        const distance = 5280 / 4 // quarter mile
         const appId = '5C3A497B4A51A9E15E3D97D4A'
 
         axios({

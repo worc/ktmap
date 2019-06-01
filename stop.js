@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { flatEarthDistance } from './distance'
 import { flatEarthNamedBearing } from './bearing'
+import { walkingTimeEstimator } from "./walking_time";
 
 export default ({ stop, userLocation }) => {
     const stopUrl = `/arrivals/${ stop.locid }`
@@ -14,7 +15,7 @@ export default ({ stop, userLocation }) => {
         <StyledLink to={ stopUrl }>
             <StopInformation>
                 <h2>#{ stop.locid}, { stop.desc }, { stop.dir }</h2>
-                <div>distance: { distance }m</div>
+                <div>distance: { distance }m, about a { walkingTimeEstimator(distance) } minute walk</div>
                 <div>bearing: { bearing }</div>
             </StopInformation>
         </StyledLink>
