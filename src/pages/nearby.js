@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-
+import useUserLocation from '../useUserLocation'
 import Stop from '../stop'
 
 const appId = '5C3A497B4A51A9E15E3D97D4A'
@@ -11,17 +11,8 @@ const distanceAway = 5280 / 2 // half mile
 // todo poll location, update if it's a significant enough difference from previous position
 // todo also eventually and time out anyways after 15 seconds or so
 export default () => {
-    const [userLocation, setUserLocation] = useState({})
+    const userLocation = useUserLocation()
     const [stops, setStops] = useState([])
-
-    useEffect(() => {
-        navigator.geolocation.getCurrentPosition(position => {
-            setUserLocation({
-                latitude: position.coords.latitude,
-                longitude: position.coords.longitude,
-            })
-        })
-    }, [])
 
     useEffect(() => {
         if (userLocation.latitude && userLocation.longitude) {

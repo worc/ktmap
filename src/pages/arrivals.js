@@ -2,33 +2,19 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
 import Arrival from '../arrival'
+import useUserLocation from '../useUserLocation'
 import { flatEarthDistance } from "../distance"
 import { walkingTimeEstimator } from "../walking_time"
 
 const appId = '5C3A497B4A51A9E15E3D97D4A'
 
-const PORTLANDIA = {
-    latitude: 45.515790,
-    longitude: -122.679042,
-}
-
 export default ({ match }) => {
     const [nextArrivals, setNextArrivals] = useState([])
     const [stopLocation, setStopLocation] = useState({})
-    const [userLocation, setUserLocation] = useState(PORTLANDIA)
     const [distance, setDistance] = useState(null)
+    const userLocation = useUserLocation()
 
     useEffect(() => {
-        navigator.geolocation.getCurrentPosition(position => {
-            setUserLocation({
-                latitude: position.coords.latitude,
-                longitude: position.coords.longitude,
-            })
-        })
-    }, [])
-
-    useEffect(() => {
-        debugger
         setDistance(Math.trunc(flatEarthDistance(userLocation, { latitude: stopLocation.lat, longitude: stopLocation.lng })))
     }, [userLocation, stopLocation])
 
