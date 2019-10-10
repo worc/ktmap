@@ -1,61 +1,59 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
 import Arrival from '../arrival'
 import { flatEarthDistance } from "../distance"
 import { walkingTimeEstimator } from "../walking_time"
 
-export default class Arrivals extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            nextArrivals: [],
-            stopLocation: {},
-            userLocation: {},
-        }
-    }
+const appId = '5C3A497B4A51A9E15E3D97D4A'
 
-    componentDidMount() {
-        const appId = '5C3A497B4A51A9E15E3D97D4A'
-        const stopId = this.props.match.params.stopId
+const PORTLANDIA = {
+    latitude: 45.515790,
+    longitude: -122.679042,
+}
 
+export default ({ match }) => {
+    const [nextArrivals, setNextArrivals] = useState([])
+    const [stopLocation, setStopLocation] = useState({})
+    const [userLocation, setUserLocation] = useState(PORTLANDIA)
+    const [distance, setDistance] = useState(null)
+
+    useEffect(() => {
         navigator.geolocation.getCurrentPosition(position => {
-            const userLocation = {
+            setUserLocation({
                 latitude: position.coords.latitude,
-                longitude: position.coords.longitude
-            }
-            this.setState({
-                userLocation,
+                longitude: position.coords.longitude,
             })
         })
+    }, [])
 
+    useEffect(() => {
+        debugger
+        setDistance(Math.trunc(flatEarthDistance(userLocation, { latitude: stopLocation.lat, longitude: stopLocation.lng })))
+    }, [userLocation, stopLocation])
+
+    useEffect(() => {
         axios({
             method: 'GET',
-            url: `https://developer.trimet.org/ws/v2/arrivals?locIDs=${ stopId }&appId=${ appId }`
+            url: `https://developer.trimet.org/ws/v2/arrivals?locIDs=${ match.params.stopId }&appId=${ appId }`
         }).then(response => {
-            console.log(response)
-            this.setState({
-                nextArrivals: response.data.resultSet.arrival,
-                stopLocation: response.data.resultSet.location[0],
-            })
+            setNextArrivals(response.data.resultSet.arrival)
+            setStopLocation(response.data.resultSet.location[0])
         })
-    }
+    }, [])
 
-    render() {
-        const stopLocation = this.state.stopLocation
-        const userLocation = this.state.userLocation
-        const distance =  Math.trunc(flatEarthDistance(userLocation, { latitude: stopLocation.lat, longitude: stopLocation.lng }))
-
-        return (
-            <ArrivalsContainer>
-                <h1>#{ stopLocation.id }, { stopLocation.desc }, { stopLocation.dir }</h1>
-                <div>
-                    distance: { distance }m, about a { walkingTimeEstimator(distance) } minute walk
-                </div>
-                { this.state.nextArrivals.map(arrival => <Arrival key={ arrival.tripID } location={ this.state.stopLocation } arrival={ arrival } />) }
-            </ArrivalsContainer>
-        )
-    }
+    return (
+        <ArrivalsContainer>
+            <h1>#{ stopLocation.id }, { stopLocation.desc }, { stopLocation.dir }</h1>
+            <div>
+                distance: { distance }m, about a { walkingTimeEstimator(distance) } minute walk
+            </div>
+            { nextArrivals
+                ? nextArrivals.map(arrival => <Arrival key={ arrival.tripID } location={ stopLocation } arrival={ arrival } />)
+                : null
+            }
+        </ArrivalsContainer>
+    )
 }
 
 const ArrivalsContainer = styled.div`
