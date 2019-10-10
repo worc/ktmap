@@ -21,7 +21,7 @@ jobs:
                   command: npm install
             - run:
                   name: Deploy
-                  command: npm run aws
+                  command: npm run deploy
 
 workflows:
     version: 2
