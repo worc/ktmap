@@ -6,7 +6,7 @@
     "aws": "rm -rf dist/ && cross-env NODE_ENV=production webpack",
     "deploy": "npm run aws && node scripts/deploy.js",
     "build": "webpack --config webpack.prod.config.js",
-    "start": "webpack-dev-server --config webpack.dev.config.js --hot --inline",
+    "start": "cross-env NODE_ENV=development webpack-dev-server --hot --inline --config webpack.config.js",
     "test": "mocha './{,!(node_modules)/**}/*.test.js' --opts mocha.opts"
   },
   "author": "worc <curtis.s.mcallister@gmail.com>",
