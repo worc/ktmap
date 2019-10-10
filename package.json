@@ -1,8 +1,10 @@
 {
   "name": "ktmap",
   "description": "a location-based next arrivals app for the trimet transit system",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
+    "aws": "rm -rf dist/ && cross-env NODE_ENV=production webpack",
+    "deploy": "npm run aws && node scripts/deploy.js",
     "build": "webpack --config webpack.prod.config.js",
     "start": "webpack-dev-server --config webpack.dev.config.js --hot --inline",
     "test": "mocha './{,!(node_modules)/**}/*.test.js' --opts mocha.opts"
@@ -10,22 +12,26 @@
   "author": "worc <curtis.s.mcallister@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "@babel/preset-react": "^7.0.0",
+    "aws-sdk": "^2.546.0",
     "axios": "^0.18.0",
+    "babel-loader": "^8.0.6",
+    "chai": "^4.1.2",
+    "cross-env": "^6.0.3",
+    "ejs": "^2.7.1",
+    "html-webpack-plugin": "^3.2.0",
+    "mocha": "^5.2.0",
     "moment": "^2.22.2",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
-    "styled-components": "^4.2.0"
-  },
-  "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.4",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-react": "^6.24.1",
-    "chai": "^4.1.2",
-    "mocha": "^5.2.0",
+    "styled-components": "^4.2.0",
     "webpack": "^4.19.1",
+    "webpack-bundle-analyzer": "^3.5.2",
     "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^3.1.8"
   }

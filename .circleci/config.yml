@@ -1,0 +1,39 @@
+version: 2
+jobs:
+    build:
+        docker:
+            - image: circleci/node:10
+        steps:
+            - checkout
+            - run:
+                  name: Install stuff
+                  command: npm install
+#            - run:
+#                  name: Build Stuff
+#                  command: npm run build
+    deploy:
+        docker:
+            - image: circleci/node:10
+        steps:
+            - checkout
+            - run:
+                  name: Install
+                  command: npm install
+            - run:
+                  name: Deploy
+                  command: npm run aws
+
+workflows:
+    version: 2
+    deploy_to_aws:
+        jobs:
+            - deploy:
+                  filters:
+                      branches:
+                          only: aws
+    build_other_branches:
+        jobs:
+            - build:
+                  filters:
+                      branches:
+                          ignore: aws

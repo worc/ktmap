@@ -1,4 +1,3 @@
-
 import React from 'react'
 import { render } from 'react-dom'
 import { HashRouter, Switch, Route, Redirect } from 'react-router-dom'
