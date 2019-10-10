@@ -45,10 +45,26 @@ export default () => {
                 { ...viewport }
                 onViewportChange={ viewport => setViewport(viewport)}
                 mapboxApiAccessToken={'pk.eyJ1Ijoic3R4YWxxIiwiYSI6ImNrMWs5aHoxMTBrOW4zbHFuM2pxdmk4Ym8ifQ.0PH0Ji8WXfb6UJ0U0qFD1Q'}
+                mapStyle={'mapbox://styles/stxalq/ck1kf2hvn1sqj1crmwcudsqtw'}
             />
         </MapContainer>
     )
 }
+
+// pencil
+// mapbox://styles/stxalq/ck1kf2pr56k001cnxr6idrj4i
+// minimo
+// mapbox://styles/stxalq/ck1kf2hvn1sqj1crmwcudsqtw
+// mapbox://styles/mapbox/streets-v11
+// mapbox://styles/mapbox/outdoors-v11
+// mapbox://styles/mapbox/light-v10
+// mapbox://styles/mapbox/dark-v10
+// mapbox://styles/mapbox/satellite-v9
+// mapbox://styles/mapbox/satellite-streets-v11
+// mapbox://styles/mapbox/navigation-preview-day-v4
+// mapbox://styles/mapbox/navigation-preview-night-v4
+// mapbox://styles/mapbox/navigation-guidance-day-v4
+// mapbox://styles/mapbox/navigation-guidance-night-v4
 
 const MapContainer = styled.div`
     height: 100%;
