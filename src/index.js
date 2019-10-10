@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { HashRouter, Switch, Route, Redirect } from 'react-router-dom'
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import { createGlobalStyle } from "styled-components";
 
 import Nearby from './pages/nearby'
@@ -27,7 +27,7 @@ const GlobalStyle = createGlobalStyle`
 `
 
 render(
-    <HashRouter>
+    <BrowserRouter>
         <>
             <GlobalStyle/>
             <Switch>
@@ -37,6 +37,6 @@ render(
                 <Route path='*' component={ NotFound } />
             </Switch>
         </>
-    </HashRouter>
+    </BrowserRouter>
     , document.getElementById('app')
 )
