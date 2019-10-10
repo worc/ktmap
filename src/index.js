@@ -9,6 +9,8 @@ import NotFound from './not_found'
 
 const GlobalStyle = createGlobalStyle`
     body {
+        background: #ccc;
+        color: #810e0e;
         margin: 0;
     }
 

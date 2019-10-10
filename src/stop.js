@@ -23,6 +23,7 @@ export default ({ stop, userLocation }) => {
 }
 
 const StyledLink = styled(Link)`
+  color: #810e0e;
   text-decoration: none;
 `
 
