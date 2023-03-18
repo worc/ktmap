@@ -2,6 +2,7 @@ import React from 'react'
 import { render } from 'react-dom'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import styled, { createGlobalStyle } from "styled-components";
+import ContextProviders from "./context/ContextProviders";
 import Map from './map'
 import Nearby from './pages/nearby'
 import Arrivals from './pages/arrivals'
@@ -39,7 +40,7 @@ const MapOverlay = styled.div`
 
 render(
   <BrowserRouter>
-    <>
+    <ContextProviders>
       <GlobalStyle/>
       <Map/>
       <MapOverlay>
@@ -50,7 +51,7 @@ render(
           <Route path='*' component={NotFound}/>
         </Switch>
       </MapOverlay>
-    </>
+    </ContextProviders>
   </BrowserRouter>
   , document.getElementById('app')
 )

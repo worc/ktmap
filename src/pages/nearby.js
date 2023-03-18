@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import axios from 'axios'
-import useUserLocation from '../useUserLocation'
 import Stop from '../stop'
+import UserLocation from "../context/UserLocation";
 
 const appId = '5C3A497B4A51A9E15E3D97D4A'
 
@@ -11,7 +11,7 @@ const distanceAway = 5280 / 2 // half mile
 // todo poll location, update if it's a significant enough difference from previous position
 // todo also eventually and time out anyways after 15 seconds or so
 export default () => {
-    const userLocation = useUserLocation()
+    const userLocation = useContext(UserLocation)
     const [stops, setStops] = useState([])
 
     useEffect(() => {

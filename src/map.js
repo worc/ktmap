@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import styled from 'styled-components'
 import ReactMapGL from 'react-map-gl'
-import useUserLocation from './useUserLocation'
 import PORTLANDIA from './portlandia'
+import UserLocation from "./context/UserLocation";
 
 function getWindowSize () {
     return {
@@ -12,7 +12,7 @@ function getWindowSize () {
 }
 
 export default () => {
-    const userLocation = useUserLocation()
+    const userLocation = useContext(UserLocation)
     const [viewport, setViewport] = useState({
         ...getWindowSize(),
         ...PORTLANDIA,
