@@ -52,9 +52,9 @@ const flatEarthBearingRadians = (origin = { latitude: 0, longitude: 0 }, target 
     const latitudeDifference = targetRadians.latitude - originRadians.latitude
     const northSouthDifference = EARTH_MEAN_RADIUS * latitudeDifference
 
-    console.log('east west', eastWestDifference)
-    console.log('north south', northSouthDifference)
-    console.log(eastWestDifference / northSouthDifference)
+    // console.log('east west', eastWestDifference)
+    // console.log('north south', northSouthDifference)
+    // console.log(eastWestDifference / northSouthDifference)
 
     return Math.atan2(northSouthDifference, eastWestDifference)
 }

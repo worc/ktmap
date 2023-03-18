@@ -2,33 +2,42 @@ import React, {useState, useEffect, useContext} from 'react'
 import axios from 'axios'
 import Stop from '../stop'
 import UserLocation from "../context/UserLocation";
+import {flatEarthDistance} from "../util/distance";
 
 const appId = '5C3A497B4A51A9E15E3D97D4A'
 
 // maximum distance in feet to search for stops
 const distanceAway = 5280 / 2 // half mile
 
-// todo poll location, update if it's a significant enough difference from previous position
-// todo also eventually and time out anyways after 15 seconds or so
+// todo also eventually timeout the drift and update anyways? 60 seconds?
 export default () => {
-    const userLocation = useContext(UserLocation)
-    const [stops, setStops] = useState([])
+  const userLocation = useContext(UserLocation)
+  const [queryLocation, setQueryLocation] = useState(userLocation)
+  const [stops, setStops] = useState([])
 
-    useEffect(() => {
-        if (userLocation.latitude && userLocation.longitude) {
-            const longLatQuery = `ll=${userLocation.longitude},${userLocation.latitude}`
-            axios({
-                method: 'GET',
-                url: `https://developer.trimet.org/ws/V1/stops?${ longLatQuery }&feet=${ distanceAway }&json=true&appId=${ appId }`,
-            }).then(response => {
-                setStops(response.data.resultSet.location)
-            })
-        }
-    },[userLocation])
+  useEffect(() => {
+    const driftDistance = flatEarthDistance(userLocation, queryLocation)
 
-    return (
-        <>
-            { stops.map(stop => <Stop key={ stop.locid } stop={ stop } userLocation={ userLocation } /> )}
-        </>
-    )
+    if (driftDistance > 50) {
+      setQueryLocation(userLocation)
+    }
+  }, [userLocation])
+
+  useEffect(() => {
+    if (queryLocation.latitude && queryLocation.longitude) {
+      const longLatQuery = `ll=${queryLocation.longitude},${queryLocation.latitude}`
+      axios({
+        method: 'GET',
+        url: `https://developer.trimet.org/ws/V1/stops?${longLatQuery}&feet=${distanceAway}&json=true&appId=${appId}`,
+      }).then(response => {
+        setStops(response.data.resultSet.location)
+      })
+    }
+  }, [queryLocation])
+
+  return (
+    <>
+      {stops.map(stop => <Stop key={stop.locid} stop={stop} userLocation={userLocation}/>)}
+    </>
+  )
 }

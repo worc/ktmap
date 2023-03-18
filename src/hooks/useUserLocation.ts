@@ -9,6 +9,7 @@ export default (initialPosition = PORTLANDIA) => {
       setUserLocation({
         latitude: position.coords.latitude,
         longitude: position.coords.longitude,
+        unit: 'DEGREES',
       })
     })
   }
