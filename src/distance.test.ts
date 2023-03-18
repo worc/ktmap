@@ -1,8 +1,9 @@
+import { describe, test } from '@jest/globals'
 import { assert } from 'chai'
 import { flatEarthDistance } from './distance'
 
 describe('flatEarthDistance', () => {
-    it('turns lat/long objects into a distance', () => {
+    test('turns lat/long objects into a distance', () => {
         const busStopOnHawthorneAnd27th = {
             longitude: -122.637997792068,
             latitude: 45.5121391578243,

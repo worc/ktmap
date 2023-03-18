@@ -1,4 +1,4 @@
-import EARTH_MEAN_RADIUS from './earth_mean_radius'
+import { EARTH_MEAN_RADIUS } from './earth_mean_radius'
 import { pairToRadians } from './trig'
 
 // haversine formula, treats the earth as a spheroid and gets accurate distance across the globe
@@ -25,7 +25,7 @@ import { pairToRadians } from './trig'
 // treats lat and long as if they were (x, y) coordinate pairs on a 
 // flat plane, includes the cosine correction term to account for 
 // longitude distances shrinking as you move away from the equator
-export const flatEarthDistance = (origin = { latitude, longitude }, target = { latitude, longitude }) => {
+export const flatEarthDistance = (origin = { latitude: 0, longitude: 0 }, target = { latitude: 0, longitude: 0 }) => {
     const originRadians = pairToRadians(origin)
     const targetRadians = pairToRadians(target)
     const meridianCorrection = Math.cos(targetRadians.latitude) // either latitude here works apparently

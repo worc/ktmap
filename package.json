@@ -7,7 +7,9 @@
     "deploy": "npm run aws && node scripts/deploy.js",
     "build": "webpack --config webpack.prod.config.js",
     "start": "cross-env NODE_ENV=development webpack-dev-server --hot --inline --config webpack.config.js",
-    "test": "mocha './{,!(node_modules)/**}/*.test.js' --opts mocha.opts"
+    "test": "jest --verbose",
+    "test:mocha": "mocha './{,!(node_modules)/**}/*.test.js' --opts mocha.opts",
+    "types:check": "tsc --noEmit"
   },
   "author": "worc <curtis.s.mcallister@gmail.com>",
   "license": "ISC",
@@ -36,5 +38,14 @@
     "webpack-bundle-analyzer": "^3.5.2",
     "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^3.9.0"
+  },
+  "devDependencies": {
+    "@jest/globals": "^29.5.0",
+    "@types/chai": "^4.3.4",
+    "jest": "^29.5.0",
+    "ts-jest": "^29.0.5",
+    "ts-loader": "^9.4.2",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.2"
   }
 }

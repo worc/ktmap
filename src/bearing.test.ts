@@ -1,3 +1,4 @@
+import { describe, test } from '@jest/globals'
 import { assert } from 'chai'
 import { flatEarthBearingDegreesHeading, flatEarthNamedBearing } from './bearing'
 
@@ -16,24 +17,24 @@ const busStopOnHawthorneAnd25th = {
 }
 
 describe('flatEarthBearingDegreesHeading', () => {
-  it('gives a bearing of about 326 degrees from the salmon street house to the bus stop on morrison and 25th', () => {
+  test('gives a bearing of about 326 degrees from the salmon street house to the bus stop on morrison and 25th', () => {
     const bearing = flatEarthBearingDegreesHeading(salmonStreetHouse, busStopOnMorrisonAnd25th)
     assert.approximately(bearing, 326, acceptableDelta, `bearing--${bearing}--was not within ${ acceptableDelta } degrees`)
   })
 
-  it('gives a bearing of about 225 degrees from the salmon street house to the bus stop on hawthorne and 25th', () => {
+  test('gives a bearing of about 225 degrees from the salmon street house to the bus stop on hawthorne and 25th', () => {
     const bearing = flatEarthBearingDegreesHeading(salmonStreetHouse, busStopOnHawthorneAnd25th)
     assert.approximately(bearing, 225, acceptableDelta, `bearing--${bearing}--was not within ${ acceptableDelta } degrees`)
   })
 })
 
 describe('flatEarthNamedBearing', () => {
-  it('gives a named bearing, nw, from the salmon street house to the bus stop on morrison and 25th', () => {
+  test('gives a named bearing, nw, from the salmon street house to the bus stop on morrison and 25th', () => {
     const bearing = flatEarthNamedBearing(salmonStreetHouse, busStopOnMorrisonAnd25th)
     assert(bearing, 'nw')
   })
 
-  it('gives a named bearing, sw, from the salmon street house to the bus stop on hawthorne and 25th', () => {
+  test('gives a named bearing, sw, from the salmon street house to the bus stop on hawthorne and 25th', () => {
     const bearing = flatEarthNamedBearing(salmonStreetHouse, busStopOnHawthorneAnd25th)
     assert(bearing, 'sw')
   })
