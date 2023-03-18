@@ -8,7 +8,6 @@
     "build": "webpack --config webpack.prod.config.js",
     "start": "cross-env NODE_ENV=development webpack-dev-server --hot --inline --config webpack.config.js",
     "test": "jest --verbose",
-    "test:mocha": "mocha './{,!(node_modules)/**}/*.test.js' --opts mocha.opts",
     "types:check": "tsc --noEmit"
   },
   "author": "worc <curtis.s.mcallister@gmail.com>",
@@ -26,7 +25,6 @@
     "ejs": "^2.7.1",
     "html-webpack-plugin": "^3.2.0",
     "mapbox-gl": "^1.4.0",
-    "mocha": "^5.2.0",
     "moment": "^2.22.2",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
