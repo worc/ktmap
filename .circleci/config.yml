@@ -2,7 +2,7 @@ version: 2
 jobs:
     build:
         docker:
-            - image: cimg/node:18
+            - image: cimg/node:18.15.0
         steps:
             - checkout
             - run:
@@ -13,7 +13,7 @@ jobs:
 #                  command: npm run build
     deploy:
         docker:
-            - image: cimg/node:18
+            - image: cimg/node:18.15.0
         steps:
             - checkout
             - run:
