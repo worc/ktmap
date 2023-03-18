@@ -3,7 +3,7 @@ import axios from 'axios'
 import styled from 'styled-components'
 import Arrival from '../arrival'
 import { flatEarthDistance } from "../util/distance"
-import { walkingTimeEstimator } from "../util/walking_time"
+import { walkingTimeEstimator } from "../util/walkingTimeEstimator"
 import UserLocation from "../context/UserLocation";
 
 const appId = '5C3A497B4A51A9E15E3D97D4A'

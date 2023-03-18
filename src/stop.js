@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { flatEarthDistance } from './util/distance'
 import { flatEarthNamedBearing } from './util/bearing'
-import { walkingTimeEstimator } from "./util/walking_time";
+import { walkingTimeEstimator } from "./util/walkingTimeEstimator";
 
 export default ({ stop, userLocation }) => {
     const stopUrl = `/arrivals/${ stop.locid }`
