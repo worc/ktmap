@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
 import Arrival from '../arrival'
-import useUserLocation from '../useUserLocation'
-import { flatEarthDistance } from "../distance"
-import { walkingTimeEstimator } from "../walking_time"
+import { flatEarthDistance } from "../util/distance"
+import { walkingTimeEstimator } from "../util/walkingTimeEstimator"
+import UserLocation from "../context/UserLocation";
 
 const appId = '5C3A497B4A51A9E15E3D97D4A'
 
@@ -12,7 +12,7 @@ export default ({ match }) => {
     const [nextArrivals, setNextArrivals] = useState([])
     const [stopLocation, setStopLocation] = useState({})
     const [distance, setDistance] = useState(null)
-    const userLocation = useUserLocation()
+    const userLocation = useContext(UserLocation)
 
     useEffect(() => {
         setDistance(Math.trunc(flatEarthDistance(userLocation, { latitude: stopLocation.lat, longitude: stopLocation.lng })))

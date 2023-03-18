@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import { flatEarthDistance } from './distance'
-import { flatEarthNamedBearing } from './bearing'
-import { walkingTimeEstimator } from "./walking_time";
+import { flatEarthDistance } from './util/distance'
+import { flatEarthNamedBearing } from './util/bearing'
+import { walkingTimeEstimator } from "./util/walkingTimeEstimator";
 
 export default ({ stop, userLocation }) => {
     const stopUrl = `/arrivals/${ stop.locid }`

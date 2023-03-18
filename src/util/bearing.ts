@@ -1,4 +1,4 @@
-import EARTH_MEAN_RADIUS from './earth_mean_radius'
+import {EARTH_MEAN_RADIUS} from './earth_mean_radius'
 import { pairToRadians, toDegrees } from './trig'
 
 const NORTH = 0
@@ -18,7 +18,7 @@ const WEST_NORTH_WEST = 292.5
 const NORTH_WEST = 315
 const NORTH_NORTH_WEST = 337.5
 
-const degreesToNamedBearing = degrees => {
+const degreesToNamedBearing = (degrees: number) => {
     switch (true) {
         case degrees < NORTH_NORTH_EAST || degrees > NORTH_NORTH_WEST:
             return 'n'
@@ -41,7 +41,7 @@ const degreesToNamedBearing = degrees => {
     }
 }
 
-const flatEarthBearingRadians = (origin = { latitude, longitude }, target = { latitude, longitude }) => {
+const flatEarthBearingRadians = (origin = { latitude: 0, longitude: 0 }, target = { latitude: 0, longitude: 0 }) => {
     const originRadians = pairToRadians(origin)
     const targetRadians = pairToRadians(target)
     const meridianCorrection = Math.cos(targetRadians.latitude) // either latitude here works apparently
@@ -52,14 +52,14 @@ const flatEarthBearingRadians = (origin = { latitude, longitude }, target = { la
     const latitudeDifference = targetRadians.latitude - originRadians.latitude
     const northSouthDifference = EARTH_MEAN_RADIUS * latitudeDifference
 
-    console.log('east west', eastWestDifference)
-    console.log('north south', northSouthDifference)
-    console.log(eastWestDifference / northSouthDifference)
+    // console.log('east west', eastWestDifference)
+    // console.log('north south', northSouthDifference)
+    // console.log(eastWestDifference / northSouthDifference)
 
     return Math.atan2(northSouthDifference, eastWestDifference)
 }
 
-export const flatEarthBearingDegreesHeading = (origin = { latitude, longitude }, target = { latitude, longitude }) => {
+export const flatEarthBearingDegreesHeading = (origin = { latitude: 0, longitude: 0 }, target = { latitude: 0, longitude: 0 }) => {
     const degreesFromPositiveXAxis = toDegrees(flatEarthBearingRadians(origin, target))
 
     // converts trig unit-circle degrees to a north-at-zero degrees heading value
@@ -68,7 +68,7 @@ export const flatEarthBearingDegreesHeading = (origin = { latitude, longitude },
         : (-1 * degreesFromPositiveXAxis) + 90
 }
 
-export const flatEarthNamedBearing = (origin = { latitude, longitude }, target = { latitude, longitude }) => {
+export const flatEarthNamedBearing = (origin = { latitude: 0, longitude: 0 }, target = { latitude: 0, longitude: 0 }) => {
     const degreesHeading = flatEarthBearingDegreesHeading(origin, target)
     return degreesToNamedBearing(degreesHeading)
 }
