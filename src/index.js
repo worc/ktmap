@@ -9,6 +9,12 @@ import Arrivals from './pages/arrivals'
 import NotFound from './not_found'
 
 const GlobalStyle = createGlobalStyle`
+  html, body, #app {
+    height: 100%;
+    width: 100%;
+    position: relative;
+  }
+  
   body {
     background: #ccc;
     color: #810e0e;
@@ -35,6 +41,8 @@ const MapOverlay = styled.div`
   overflow: scroll;
   padding: 8px;
   position: fixed;
+  top:0;
+  left: 0;
   z-index: 0;
 `
 

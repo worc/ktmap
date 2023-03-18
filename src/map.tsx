@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import ReactMapGL from 'react-map-gl'
 import PORTLANDIA from './portlandia'
 import UserLocation from "./context/UserLocation";
+import NearbyStopMarkers from './map/NearbyStopMarkers'
+import UserMarker from './map/UserMarker'
 
 function getWindowSize () {
     return {
@@ -42,11 +44,20 @@ export default () => {
         <MapContainer>
             <ReactMapGL
                 id={'map'}
-                { ...viewport }
-                onViewportChange={ viewport => setViewport(viewport)}
-                mapboxApiAccessToken={'pk.eyJ1Ijoic3R4YWxxIiwiYSI6ImNrMWs5aHoxMTBrOW4zbHFuM2pxdmk4Ym8ifQ.0PH0Ji8WXfb6UJ0U0qFD1Q'}
+                initialViewState={{ ...viewport }}
+                latitude={viewport.latitude}
+                longitude={viewport.longitude}
+                style={{
+                  height: '100%',
+                  width: '100%',
+                  position: 'relative'
+                }}
+                mapboxAccessToken={'pk.eyJ1Ijoic3R4YWxxIiwiYSI6ImNrMWs5aHoxMTBrOW4zbHFuM2pxdmk4Ym8ifQ.0PH0Ji8WXfb6UJ0U0qFD1Q'}
                 mapStyle={'mapbox://styles/stxalq/ck1kf2hvn1sqj1crmwcudsqtw'}
-            />
+            >
+              <NearbyStopMarkers/>
+              <UserMarker/>
+            </ReactMapGL>
         </MapContainer>
     )
 }
@@ -67,8 +78,8 @@ export default () => {
 // mapbox://styles/mapbox/navigation-guidance-night-v4
 
 const MapContainer = styled.div`
-    height: 100%;
-    width: 100%;
-    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
     z-index: -1;
 `
