@@ -6,16 +6,14 @@ export default function Stop (props: Stop) {
   const { route: routes = [] } = props
   const frequent = routes.some(route => route.routeSubType === 'BRT')
 
-
   return (
     <Container>
       <ServiceType></ServiceType>
       <Routes>
         <div className="inner">
           { routes.map(route => (
-            <div>
+            <div key={route.route}>
               <div>{ route.route }</div>
-              {/*<div>{ route.desc }</div>*/}
             </div>
           ))}
         </div>
