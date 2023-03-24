@@ -1,6 +1,7 @@
 export interface Coordinates {
-  altitude?: number,
-  heading?: number,
+  accuracy: number | null,
+  altitude: number | null,
+  heading: number | null,
   latitude: number,
   longitude: number,
   unit?: 'DEGREES' | 'RADIANS',

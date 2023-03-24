@@ -4,6 +4,9 @@
 import { DecimalCoordinates } from './types/Coordinates'
 
 const PORTLANDIA: DecimalCoordinates = {
+  accuracy: 1,
+  altitude: 15,
+  heading: null,
   latitude: 45.515790,
   longitude: -122.679042,
   unit: 'DEGREES'

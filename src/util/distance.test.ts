@@ -6,12 +6,18 @@ import { DecimalCoordinates } from '../types/Coordinates'
 describe('flatEarthDistance', () => {
   test('turns lat/long objects into a distance', () => {
     const busStopOnHawthorneAnd27th: DecimalCoordinates = {
+      accuracy: null,
+      altitude: null,
+      heading: null,
       longitude: -122.637997792068,
       latitude: 45.5121391578243,
       unit: 'DEGREES',
     }
 
     const salmonStreetHouse: DecimalCoordinates = {
+      accuracy: null,
+      altitude: null,
+      heading: null,
       longitude: -122.63752389999999,
       latitude: 45.514203699999996,
       unit: 'DEGREES',
