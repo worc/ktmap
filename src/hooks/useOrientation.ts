@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { throttle } from 'lodash'
 
 export default function useOrientation (invertAlpha = true) {
   const [absoluteOrientation, setAbsoluteOrientation] = useState<Partial<DeviceOrientationEvent>>()
@@ -13,7 +14,7 @@ export default function useOrientation (invertAlpha = true) {
 
   useEffect(() => {
     // @ts-ignore
-    window.addEventListener('deviceorientationabsolute', handleAbsoluteOrientation)
+    window.addEventListener('deviceorientationabsolute', throttle(handleAbsoluteOrientation, 33))
   }, [])
 
   return absoluteOrientation
