@@ -7,6 +7,7 @@ import Map from './map'
 import Nearby from './pages/nearby'
 import Arrivals from './pages/arrivals'
 import NotFound from './not_found'
+import Debug from "./debug";
 
 const GlobalStyle = createGlobalStyle`
   html, body, #app {
@@ -57,6 +58,7 @@ render(
           <Route exact path='/arrivals' component={Nearby}/>
           <Route exact path='/arrivals/:stopId' component={Arrivals}/>
           <Route exact path='/map' component={null}/>
+          <Route exact path='/debug' component={Debug}/>
           <Route path='*' component={NotFound}/>
         </Switch>
       </MapOverlay>
