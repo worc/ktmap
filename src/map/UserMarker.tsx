@@ -2,21 +2,36 @@ import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { Marker } from 'react-map-gl'
 import UserLocation from '../context/UserLocation'
+import MapRotationMode from '../context/MapRotationMode'
+import useOrientation from '../hooks/useOrientation'
 
 export default function UserMarker () {
   const userLocation = useContext(UserLocation)
+  const { mode, toggle } = useContext(MapRotationMode)
+  const absoluteOrientation = useOrientation()
+
+  const bearing = mode === 'map' ? 0 : absoluteOrientation?.alpha ?? userLocation.heading ?? 0
+  const dashed = mode === 'user'
 
   console.log(userLocation.heading)
 
   return (
-    <Marker key="user-location" latitude={userLocation.latitude} longitude={userLocation.longitude} anchor="bottom">
-      <User heading={userLocation.heading}/>
+    <Marker
+      anchor="bottom"
+      key="user-location"
+      latitude={userLocation.latitude}
+      longitude={userLocation.longitude}
+      onClick={toggle}
+      pitchAlignment="map"
+      rotation={bearing}
+    >
+      <User dashed={dashed}/>
     </Marker>
   )
 }
 
 interface User {
-  readonly heading: number | null,
+  readonly dashed: boolean,
 }
 
 const User = styled.div<User>`
@@ -30,11 +45,15 @@ const User = styled.div<User>`
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
 
-  border-bottom: 30px solid blue;
+  border-bottom: 30px solid #084c8d;
   
-  transform: rotate(${props => props.heading ?? 0}deg);
+  &:after {
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 15px solid white;
+    content: '';
+    position: absolute;
+    top: 9px;
+    left: 5px;
+  }
 `
-
-// User.defaultProps = {
-//   bearing: 0
-// }

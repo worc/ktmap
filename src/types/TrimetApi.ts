@@ -7,6 +7,17 @@ interface TrimetResponse<T> {
   queryTime: string,
 }
 
+// https://developer.trimet.org/schema/schedule.xsd
+// https://developer.trimet.org/ws_docs/stop_location_ws.shtml
+interface Route {
+  desc: string,
+  routeColor: string,
+  route: number,
+  routeSubType: 'Bus' | string,
+  type: string,
+}
+
+// https://developer.trimet.org/ws_docs/stop_location_ws.shtml
 export interface Stop {
   lat: number,
   lng: number,
@@ -15,6 +26,7 @@ export interface Stop {
   dir: string,
   locid: number,
   desc: string,
+  route?: Route[],
 }
 
 export interface NearbyStops extends TrimetResponse<Stop> {}

@@ -25,7 +25,7 @@ export default function useNearbyStops (userCoordinates: DecimalCoordinates): St
   useEffect(() => {
     if (queryLocation.latitude && queryLocation.longitude) {
       const longLatQuery = `ll=${queryLocation.longitude},${queryLocation.latitude}`
-      axios.get<NearbyStops>(`https://developer.trimet.org/ws/V1/stops?${longLatQuery}&feet=${distanceAway}&json=true&appId=${appId}`,)
+      axios.get<NearbyStops>(`https://developer.trimet.org/ws/V1/stops?${longLatQuery}&feet=${distanceAway}&json=true&appId=${appId}&showRoutes=true`,)
         .then(response => {
           setStops(response.data.resultSet.location)
         })
