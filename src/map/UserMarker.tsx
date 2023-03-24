@@ -35,11 +35,6 @@ interface User {
 }
 
 const User = styled.div<User>`
-  //height: 25px;
-  //width: 25px;
-  //border: 4px solid blue;
-  //border-radius: 50%;
-
   width: 0;
   height: 0;
   border-left: 10px solid transparent;
