@@ -44,6 +44,10 @@ const GlobalStyle = createGlobalStyle`
     &.mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
       border-top-color: #810e0e;
     }
+
+    &.mapboxgl-popup-anchor-top-right .mapboxgl-popup-tip {
+      border-bottom-color: #810e0e;
+    }
   }
 `
 

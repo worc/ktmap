@@ -16,7 +16,7 @@ export default function NextArrivalsPopup () {
     return (
       <>
         {show && (
-          <Popup anchor="top-right" className="custom-popup" latitude={latitude} longitude={longitude} onClose={() => setShow(false)} closeOnClick={false}>
+          <Popup anchor="top-right" className="custom-popup" focusAfterOpen={false} latitude={latitude} longitude={longitude} onClose={() => setShow(false)} closeOnClick={false}>
             <Arrivals/>
             <div ref={el => {
               // @ts-ignore
