@@ -10,8 +10,10 @@ module.exports = {
   devtool: NODE_ENV === 'production' ? 'source-map' : 'eval',
 
   devServer: {
+    bonjour: true,
     static: 'dist/',
     historyApiFallback: true,
+    https: true,
   },
 
   entry: {
