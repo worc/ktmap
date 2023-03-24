@@ -11,6 +11,7 @@ import Debug from "./debug";
 
 const GlobalStyle = createGlobalStyle`
   html, body, #app {
+    box-sizing: border-box;
     height: 100%;
     width: 100%;
     position: relative;
@@ -34,6 +35,16 @@ const GlobalStyle = createGlobalStyle`
   h2 {
     font-size: 32px;
   }
+  
+  .custom-popup {
+    .mapboxgl-popup-content {
+      border: 1px solid #810e0e;
+    }
+    
+    &.mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
+      border-top-color: #810e0e;
+    }
+  }
 `
 
 const MapOverlay = styled.div`
@@ -54,7 +65,7 @@ render(
       <Map/>
       <MapOverlay>
         <Switch>
-          <Redirect exact from='/' to='/arrivals'/>
+          <Redirect exact from='/' to='/map'/>
           <Route exact path='/arrivals' component={Nearby}/>
           <Route exact path='/arrivals/:stopId' component={Arrivals}/>
           <Route exact path='/map' component={null}/>
