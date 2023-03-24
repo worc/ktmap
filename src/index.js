@@ -56,6 +56,7 @@ render(
           <Redirect exact from='/' to='/arrivals'/>
           <Route exact path='/arrivals' component={Nearby}/>
           <Route exact path='/arrivals/:stopId' component={Arrivals}/>
+          <Route exact path='/map' component={null}/>
           <Route path='*' component={NotFound}/>
         </Switch>
       </MapOverlay>
