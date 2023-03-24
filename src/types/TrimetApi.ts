@@ -1,10 +1,8 @@
 interface TrimetResponse<T> {
-  arrival?: unknown[],
-  detour?: unknown[],
   resultSet: {
     location: Array<T>
+    queryTime: string | number,
   }
-  queryTime: string,
 }
 
 // https://developer.trimet.org/schema/schedule.xsd
@@ -31,15 +29,57 @@ export interface Stop {
 
 export interface NearbyStops extends TrimetResponse<Stop> {}
 
-// export interface Arrival {
-//   lat: number,
-//   lng: number,
-//   passengerCode: string,
-//   id: number,
-//   dir: string,
-//   desc: string,
-// }
-//
-// export interface Arrivals extends TrimetResponse<Arrival> {
-//
-// }
+export interface Arrival {
+  routeColor: string,
+  feet: number,
+  inCongestion: boolean,
+  departed: boolean,
+  scheduled: number,
+  loadPercentage: unknown | null,
+  shortSign: string,
+  estimated: number,
+  detoured: boolean,
+  tripID: string,
+  dir: number,
+  blockID: number
+  detour: Detour['id'][],
+  route: number,
+  piece: string,
+  fullSign: string,
+  id: string,
+  dropOffOnly: boolean,
+  vehicleID: string,
+  showMilesAway: boolean,
+  locid: number,
+  newTrip: boolean,
+  status: string | 'estimated',
+}
+
+interface Detour {
+  route: Partial<Route>[]
+  info_link_url: string | null,
+  end: unknown | null,
+  system_wide_flag: boolean,
+  id: number,
+  header_text: string,
+  begin: number,
+  desc: string,
+}
+
+export interface ArrivalStop extends Partial<Stop> {
+  lat: number,
+  lng: number,
+  passengerCode: string,
+  id: number,
+  dir: string,
+  desc: string,
+}
+
+export interface Arrivals {
+  queryTime: number,
+  resultSet: {
+    arrival: Arrival[],
+    detour: Detour[],
+    location: ArrivalStop[],
+  },
+}
