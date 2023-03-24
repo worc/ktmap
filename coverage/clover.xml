@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1679122454133" clover="3.2.0">
-  <project timestamp="1679122454133" name="All files">
+<coverage generated="1679646302964" clover="3.2.0">
+  <project timestamp="1679646302964" name="All files">
     <metrics statements="127" coveredstatements="120" conditionals="26" coveredconditionals="19" methods="8" coveredmethods="8" elements="161" coveredelements="147" complexity="0" loc="127" ncloc="127" packages="1" files="4" classes="4"/>
     <file name="bearing.ts" path="/media/robert/990B/repos/ktmap/src/util/bearing.ts">
       <metrics statements="74" coveredstatements="67" conditionals="22" coveredconditionals="15" methods="4" coveredmethods="4"/>
